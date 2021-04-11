@@ -37,4 +37,22 @@ class GithubApi:
 
         :login: login da organização no Github
         """
-        return 0
+        # Criando a URL para a chamada de API do Github
+        url = self.API_URL+"/orgs/"+login+"/public_members"
+
+        # Realizando a chamada de API
+        result = requests.get(url)
+
+        # Verificando o status da resposta
+        # Se for 200
+        if(result.status_code == 200):
+            # Transforma o texto da resposta em JSON
+            result = result.json()
+
+            # Retorna o tamanho
+            return len(result)
+
+        # Se for diferente de 200
+        else:
+            # Retorna o status 404 (padrão de resposta da API do Github) e o campo data como None
+            return None
