@@ -25,12 +25,35 @@ class OrganizationViewSet(viewsets.ModelViewSet):
 
     Methods
     -------
+    list()
+        Retorna todos os registros ordenados pelo score
     retrieve(login=None)
         Busca no banco de dados os detalhes de uma organização específica.
     """
     queryset = models.Organization.objects.all()
     serializer_class = serializers.OrganizationSerializer
     lookup_field = "login"
+
+    def list(self, request):
+
+        # Pega todos os registros do banco de dados ordenados de forma
+        # decrescente pelo score
+        queryset = models.Organization.objects.all().order_by('-score')
+
+        # Se não encontrar nada
+        if not queryset:
+
+            # Retorna o status de erro 404
+            return Response(status=404)
+
+        # Caso tenha uma ou mais organizações no banco de dados
+        else:
+
+            # Envia para o serializador
+            serializer_result = serializers.OrganizationSerializer(queryset,many=True)
+            # Retorna uma resposta com os dados da organização ordenados pelo
+            # score de forma decrescente e o status 200
+            return Response(serializer_result.data,status=200)
 
     def retrieve(self, request, login=None):
 
