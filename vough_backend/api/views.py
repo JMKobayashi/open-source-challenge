@@ -27,8 +27,12 @@ class OrganizationViewSet(viewsets.ModelViewSet):
     -------
     list()
         Retorna todos os registros ordenados pelo score
+
     retrieve(login=None)
         Busca no banco de dados os detalhes de uma organização específica.
+
+    destroy(login)
+        Busca no banco de dados uma organização e a remove do banco
     """
     queryset = models.Organization.objects.all()
     serializer_class = serializers.OrganizationSerializer
@@ -108,3 +112,22 @@ class OrganizationViewSet(viewsets.ModelViewSet):
 
             # Retorna uma resposta com os dados da organização e o status 200
             return Response(data=serializer_result.data,status=200)
+
+    def destroy(self, request, login):
+
+        # Procura o login da organização no banco de dados
+        organization = models.Organization.objects.filter(login=login)
+        # Se não encontrar a organização
+        if not organization:
+
+            # Retorna o status de erro 404
+            return Response(status=404)
+
+        # Caso encontre a organização no banco de dados
+        else:
+
+            # Deleta a organização do banco de dados
+            organization.delete()
+
+            # Retorna o código 204 para confirmar a deleção
+            return Response(status=204)
