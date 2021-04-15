@@ -23,8 +23,19 @@ class GithubApi:
             # Transforma o texto da resposta em JSON
             result = result.json()
 
+            # Tenta pegar o nome no JSON de resposta
+            try:
+                name = result['name']
+            # Se der KeyError coloca como nome o login
+            except KeyError:
+                name = result['login']
+
+            # Gera um dicionário com o login, nome e quantidade de repositórios
+            # públicos da organização
+            data = {"login":result['login'], "name":name, "public_repos":result['public_repos']}
+
             # Retorna o status e os dados da resposta
-            return {"status":200,"data":result}
+            return {"status":200,"data":data}
 
         # Se for diferente de 200
         else:
