@@ -131,3 +131,15 @@ class OrganizationViewSet(viewsets.ModelViewSet):
 
             # Retorna o código 204 para confirmar a deleção
             return Response(status=204)
+
+    def create(self, request, login=None):
+
+        return Response({'message':'Função Create não é oferecida nesse caminho'},405)
+
+    def update(self, request, login=None):
+
+        return Response({'message':'Função Update não é oferecida nesse caminho'},405)
+
+    def partial_update(self, request, login=None):
+
+        return Response({'message':'Função Update não é oferecida nesse caminho'},405)
