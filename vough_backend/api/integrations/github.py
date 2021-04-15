@@ -28,7 +28,7 @@ class GithubApi:
                 name = result['name']
             # Se der KeyError coloca como nome o login
             except KeyError:
-                name = result['login']
+                name = ""
 
             # Gera um dicionário com o login, nome e quantidade de repositórios
             # públicos da organização
