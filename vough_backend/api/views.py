@@ -48,7 +48,7 @@ class OrganizationViewSet(viewsets.ModelViewSet):
         if not queryset:
 
             # Retorna o status de erro 404
-            return Response(status=404)
+            return Response(data={"Message":"Nenhuma organização encontrada"},status=404)
 
         # Caso tenha uma ou mais organizações no banco de dados
         else:
@@ -76,7 +76,7 @@ class OrganizationViewSet(viewsets.ModelViewSet):
             if organization['status'] == 404:
 
                 # Retorna o status de erro 404
-                return Response(status=404)
+                return Response(data={"Message":"Organização "+login+" não foi encontrada"},status=404)
 
             # Caso encontre a organização pela API do Github
             else:
@@ -121,7 +121,7 @@ class OrganizationViewSet(viewsets.ModelViewSet):
         if not organization:
 
             # Retorna o status de erro 404
-            return Response(status=404)
+            return Response(data={"Message":"Organização "+login+" não foi encontrada"},status=404)
 
         # Caso encontre a organização no banco de dados
         else:
