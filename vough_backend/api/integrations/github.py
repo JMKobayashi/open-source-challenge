@@ -26,7 +26,7 @@ class GithubApi:
             # Tenta pegar o nome no JSON de resposta
             try:
                 name = result['name']
-            # Se der KeyError coloca como nome o login
+            # Se der KeyError coloca vazio como nome
             except KeyError:
                 name = ""
 
