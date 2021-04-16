@@ -2,12 +2,13 @@ import pytest
 import requests
 import json
 
+# Testa a listagem de organizações quando o banco esta vazio
 def test_empty_list_organizations():
 
     response = requests.get('http://localhost:8000/api/orgs/')
     assert response.status_code == 404
 
-
+# Base de testes para busca de uma organização
 @pytest.mark.parametrize(
     'login,status',[
         ('instruct-br',200), # Succes
@@ -23,16 +24,19 @@ def test_empty_list_organizations():
     ]
 )
 
+# Testa a busca por detalhe de uma única organização
 def test_get_organization(login,status):
 
     response = requests.get('http://localhost:8000/api/orgs/'+login)
     assert response.status_code == status
 
+# Testa a listagem de organizações quando o banco não esta vazio
 def test_list_organization():
 
     response = requests.get('http://localhost:8000/api/orgs/')
     assert response.status_code == 200
 
+# Base de testes para deleção de uma organização
 @pytest.mark.parametrize(
     'login,status',[
         ('instruct-br',204), # Succes
@@ -48,6 +52,7 @@ def test_list_organization():
     ]
 )
 
+# Teste de deleção de uma organização
 def test_delete_organization(login,status):
 
     response = requests.delete('http://localhost:8000/api/orgs/'+login)
