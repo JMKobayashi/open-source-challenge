@@ -24,10 +24,13 @@ O projeto foi desenvolvido utilizando Python juntamente com Django e o Django RE
 Para instalar os requisitos é necessário estar na pasta que possui o arquivo Pipfile e rodar o seguinte comando:
 
  ```
+ pipenv install
+ ```
+
+Para ativar o ambiente virtual é necessário rodar o seguinte comando:
+ ```
  pipenv shell
  ```
- 
-Esse comando irá instalar os requisitos e já vai rodar o ambiente virtual.
  
 ## Banco de dados
  
