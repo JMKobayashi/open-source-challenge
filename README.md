@@ -109,3 +109,7 @@ O endpoint de deleção de organização tem que receber o `login` da organizaç
 ```
 https://vough-opensource.herokuapp.com/api/orgs/<login da organização>
 ```
+
+## Documentação da API
+
+Arquivo de descrição do swagger esta na pasta mas não consegui entender como fazer funcionar a execução da API pelo swagger.
